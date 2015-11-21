@@ -30,7 +30,7 @@ defmodule RedisPoolex.Mixfile do
 
   defp package do
     [# These are the default files included in the package
-      files: ["lib", "priv", "mix.exs", "README*", "readme*", "LICENSE*", "license*"],
+      files: ["lib", "mix.exs", "README*"],
       maintainers: ["Alexandr Korsak"],
       licenses: ["Apache 2.0"],
       links: %{
@@ -51,7 +51,7 @@ defmodule RedisPoolex.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [
-      {:poolboy, github: "devinus/poolboy"},
+      {:poolboy, ">= 1.5.1"},
       {:exredis, ">= 0.2.2"}
     ]
   end
