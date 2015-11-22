@@ -6,6 +6,14 @@ Redis connection pool using poolboy and exredis libraries. WIP
 **TODO: Use only one configuration section to set settings for exredis
 and poolboy**
 
+# Examples
+
+    alias RedisPoolex, as: Redis
+
+    Redis.set("key1", "value1") => "OK"
+    Redis.get("key1") => "value1"
+    Redis.get("key2") => :undefined
+
 ## Installation
 
 If [available in Hex](https://hex.pm/docs/publish), the package can be installed as:
