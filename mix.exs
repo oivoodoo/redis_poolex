@@ -52,7 +52,9 @@ defmodule RedisPoolex.Mixfile do
   defp deps do
     [
       {:poolboy, ">= 1.5.1"},
-      {:exredis, ">= 0.2.2"}
+      {:exredis, ">= 0.2.2"},
+      {:earmark, "~> 0.1", only: :dev},
+      {:ex_doc, "~> 0.11", only: :dev}
     ]
   end
 end

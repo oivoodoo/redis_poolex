@@ -45,7 +45,7 @@ defmodule RedisPoolex.Worker do
     end
 
     @doc """
-    Checking padjhfocess alive or not in case if we don't have connection we should
+    Checking process alive or not in case if we don't have connection we should
     connect to redis server.
     """
     def ensure_connection(conn) do
