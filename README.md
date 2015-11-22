@@ -1,10 +1,6 @@
 # RedisPoolex
 
-Redis connection pool using poolboy and exredis libraries. WIP
-
-**TODO: Add configuration settings using config.exs**
-**TODO: Use only one configuration section to set settings for exredis
-and poolboy**
+Redis connection pool using poolboy and exredis libraries.
 
 # Examples
 
