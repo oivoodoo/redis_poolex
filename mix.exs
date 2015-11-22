@@ -32,10 +32,10 @@ defmodule RedisPoolex.Mixfile do
     [# These are the default files included in the package
       files: ["lib", "mix.exs", "README*"],
       maintainers: ["Alexandr Korsak"],
-      licenses: ["Apache 2.0"],
+      licenses: ["MIT"],
       links: %{
         "GitHub" => "https://github.com/oivoodoo/redis_poolex",
-        "Docs" => "http://oivoodoo.github.io/redis_poolex/"
+        "Docs" => "http://hexdocs.pm/hound/"
       }
     ]
   end

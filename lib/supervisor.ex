@@ -3,7 +3,8 @@ defmodule RedisPoolex.Supervisor do
 
   @moduledoc """
 
-  Redis connection pool supervisor to handle connections via pool and reduce the number of opened connections via GenServer
+  Redis connection pool supervisor to handle connections via pool and
+  reduce the number of opened connections via GenServer.
 
   """
   use Supervisor
@@ -14,18 +15,16 @@ defmodule RedisPoolex.Supervisor do
 
   # TODO: add it as config options instead of compiled variables
   @pool_name :redis_pool
-  @connections 10
-  @max_overflow 1
+
+  alias RedisPoolex.Config
 
   def init([]) do
-    Logger.info "Testing supervisor init method on calling"
-
     # Here are my pool options
     pool_options = [
       name: {:local, @pool_name},
       worker_module: RedisPoolex.Worker,
-      size: @connections,
-      max_overflow: @max_overflow
+      size: Config.get(:pool_size, 10),
+      max_overflow: Config.get(:pool_max_overflow, 1)
     ]
 
     children = [
@@ -36,6 +35,6 @@ defmodule RedisPoolex.Supervisor do
   end
 
   def q(command, params) do
-    :poolboy.transaction(:redis_pool, fn(worker) -> GenServer.call(worker, %{command: command, params: params}) end)
+    :poolboy.transaction(@pool_name, fn(worker) -> GenServer.call(worker, %{command: command, params: params}) end)
   end
 end

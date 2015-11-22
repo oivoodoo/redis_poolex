@@ -5,7 +5,7 @@ defmodule RedisPoolexTest do
   alias RedisPoolex, as: Redis
 
   test "basic method using connection pool" do
-    Redis.flushdb()
+    Redis.flushdb
 
     Redis.set("key", "value")
     assert Redis.get("key") == "value"
