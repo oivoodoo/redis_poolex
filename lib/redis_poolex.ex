@@ -7,7 +7,7 @@ defmodule RedisPoolex do
     import Supervisor.Spec, warn: false
 
     children = [
-      supervisor(RedisPoolex.Supervisor, []),
+      supervisor(RedisPoolex.Supervisor, [])
     ]
 
     # See http://elixir-lang.org/docs/stable/elixir/Supervisor.html

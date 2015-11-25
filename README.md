@@ -12,7 +12,7 @@ Redis connection pool using poolboy and exredis libraries.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/oivoodoo/redis_poolex), the package can be installed as:
+If [available in Hex](https://hex.pm/packages/redis_poolex), the package can be installed as:
 
   1. Add redis_poolex to your list of dependencies in `mix.exs`:
 
