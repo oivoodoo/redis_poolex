@@ -67,6 +67,11 @@
       </h1>
 
       
+        <section id="moduledoc" class="docstring">
+          <p>Application for running connection pool and redis connection inside.</p>
+
+        </section>
+      
 
       
         <section id="summary" class="details-list">
@@ -135,6 +140,17 @@ related methods to redis client</p>
   <section class="docstring">
     <p><code class="inline">method_missing</code> implementation here for easy delegation of all redis
 related methods to redis client.</p>
+<h2>Examples</h2>
+<p>  iex&gt; RedisPoolex.set(“key”, “value”)
+  “OK”</p>
+<p>  iex&gt; RedisPoolex.get(“key”)
+  “value”</p>
+<p>  iex&gt; RedisPoolex.get(“unknown”)
+  :undefined</p>
+<p>  iex&gt; RedisPoolex.hset(“user”, “1”, “user-value”)
+  “OK”</p>
+<p>  iex&gt; RedisPoolex.hget(“users”, “1”)
+  “user-value”</p>
 
   </section>
 </div>
