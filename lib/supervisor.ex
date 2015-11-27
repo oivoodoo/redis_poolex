@@ -2,10 +2,8 @@ defmodule RedisPoolex.Supervisor do
   require Logger
 
   @moduledoc """
-
   Redis connection pool supervisor to handle connections via pool and
   reduce the number of opened connections via GenServer.
-
   """
   use Supervisor
 
@@ -34,6 +32,9 @@ defmodule RedisPoolex.Supervisor do
     supervise(children, strategy: :one_for_one)
   end
 
+  @doc """
+  Making query via connection pool using `%{command: command, params: params}` pattern.
+  """
   def q(command, params) do
     :poolboy.transaction(@pool_name, fn(worker) -> GenServer.call(worker, %{command: command, params: params}) end)
   end
