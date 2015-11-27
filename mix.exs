@@ -35,7 +35,7 @@ defmodule RedisPoolex.Mixfile do
       licenses: ["MIT"],
       links: %{
         "GitHub" => "https://github.com/oivoodoo/redis_poolex",
-        "Docs" => "http://hexdocs.pm/hound/"
+        "Docs" => "http://hexdocs.pm/redis_poolex/"
       }
     ]
   end
