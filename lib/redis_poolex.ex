@@ -22,4 +22,8 @@ defmodule RedisPoolex do
   def query(args) do
     RedisPoolex.Supervisor.q(args)
   end
+
+  def query_pipe(args) do
+    RedisPoolex.Supervisor.p(args)
+  end
 end

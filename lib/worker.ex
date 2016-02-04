@@ -59,19 +59,30 @@ defmodule RedisPoolex.Worker do
   end
 
   @doc false
-  def handle_call(%{params: params}, _from, %{conn: nil}) do
+  def handle_call(%{command: command, params: params}, _from, %{conn: nil}) do
     conn = Connector.connect
-    {:reply, q(conn, params), %{conn: conn}}
+    case command do
+      :query -> {:reply, q(conn, params), %{conn: conn}}
+      :query_pipe -> {:reply, p(conn, params), %{conn: conn}}
+    end
   end
 
   @doc false
-  def handle_call(%{params: params}, _from, %{conn: conn}) do
+  def handle_call(%{command: command, params: params}, _from, %{conn: conn}) do
     conn = Connector.ensure_connection(conn)
-    {:reply, q(conn, params), %{conn: conn}}
+    case command do
+      :query -> {:reply, q(conn, params), %{conn: conn}}
+      :query_pipe -> {:reply, p(conn, params), %{conn: conn}}
+    end
   end
 
   @doc false
   def q(conn, params) do
     query(conn, params)
+  end
+
+  @doc false
+  def p(conn, params) do
+    query_pipe(conn, params)
   end
 end
