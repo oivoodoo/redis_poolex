@@ -3,8 +3,8 @@ defmodule RedisPoolex.Mixfile do
 
   def project do
     [app: :redis_poolex,
-     version: "0.0.3",
-     elixir: "~> 1.2-dev",
+     version: "0.0.4",
+     elixir: "~> 1.2",
      description: description,
      package: package,
      build_embedded: Mix.env == :prod,

@@ -5,13 +5,13 @@ defmodule RedisPoolexTest do
   alias RedisPoolex, as: Redis
 
   test "basic method using connection pool" do
-    Redis.flushdb
+    Redis.query(["FLUSHDB"])
 
-    Redis.set("key", "value")
-    assert Redis.get("key") == "value"
+    Redis.query(["SET", "key", "value"])
+    assert Redis.query(["GET", "key"]) == "value"
 
-    Redis.hset("users", "1", "value")
-    assert Redis.hget("users", "1") == "value"
-    assert Redis.hget("users", "2") == :undefined
+    Redis.query(["HSET", "users", "1", "value"])
+    assert Redis.query(["HGET", "users", "1"]) == "value"
+    assert Redis.query(["HGET", "users", "2"]) == :undefined
   end
 end

@@ -35,7 +35,7 @@ defmodule RedisPoolex.Supervisor do
   @doc """
   Making query via connection pool using `%{command: command, params: params}` pattern.
   """
-  def q(command, params) do
-    :poolboy.transaction(@pool_name, fn(worker) -> GenServer.call(worker, %{command: command, params: params}) end)
+  def q(args) do
+    :poolboy.transaction(@pool_name, fn(worker) -> GenServer.call(worker, %{params: args}) end)
   end
 end
