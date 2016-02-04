@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RedisPoolex – redis_poolex v0.0.3</title>
+    <title>RedisPoolex – redis_poolex v0.0.4</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.11.0">
     <link rel="stylesheet" href="dist/app-6bc9434c82.css" />
@@ -28,7 +28,7 @@
         redis_poolex
       </h1>
       <h2 class="sidebar-projectVersion">
-        v0.0.3
+        v0.0.4
       </h2>
     </div>
     
@@ -60,7 +60,7 @@
 
 
       <h1>
-        <small class="visible-xs">redis_poolex v0.0.3</small>
+        <small class="visible-xs">redis_poolex v0.0.4</small>
         RedisPoolex
         
         
@@ -90,12 +90,8 @@
     </h2>
     <div class="summary-row">
   <div class="summary-signature">
-    <a href="#$handle_undefined_function/2">$handle_undefined_function(program, args)</a>
+    <a href="#query/1">query(args)</a>
   </div>
-  
-    <div class="summary-synopsis"><p><code class="inline">method_missing</code> implementation here for easy delegation of all redis
-related methods to redis client</p>
-</div>
   
 </div>
 <div class="summary-row">
@@ -128,30 +124,17 @@ related methods to redis client</p>
             </a>
             Functions
           </h1>
-          <div class="detail" id="$handle_undefined_function/2">
+          <div class="detail" id="query/1">
   <div class="detail-header">
-    <a href="#$handle_undefined_function/2" class="detail-link" title="Link to this function">
+    <a href="#query/1" class="detail-link" title="Link to this function">
       <i class="icon-link"></i>
     </a>
-    <span class="signature">$handle_undefined_function(program, args)</span>
+    <span class="signature">query(args)</span>
       
   </div>
   
   <section class="docstring">
-    <p><code class="inline">method_missing</code> implementation here for easy delegation of all redis
-related methods to redis client.</p>
-<h2>Examples</h2>
-<p>  iex&gt; RedisPoolex.set(“key”, “value”)
-  “OK”</p>
-<p>  iex&gt; RedisPoolex.get(“key”)
-  “value”</p>
-<p>  iex&gt; RedisPoolex.get(“unknown”)
-  :undefined</p>
-<p>  iex&gt; RedisPoolex.hset(“user”, “1”, “user-value”)
-  “OK”</p>
-<p>  iex&gt; RedisPoolex.hget(“users”, “1”)
-  “user-value”</p>
-
+    
   </section>
 </div>
 <div class="detail" id="start/2">
