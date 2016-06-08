@@ -31,15 +31,21 @@ defmodule RedisPoolex.Worker do
     Using config `redis_poolex` to connect to redis server via `Exredis`
     """
     def connect() do
-      host = Config.get(:host, "127.0.0.1")
-      port = Config.get(:port, 6379)
-      password = Config.get(:password, "")
-      database = Config.get(:db, 0)
-      reconnect = Config.get(:reconnect, :no_reconnect)
+      connection_string = Config.get(:connection_string)
+      client = if connection_string do
+        Exredis.start_using_connection_string(connection_string)
+      else
+        host = Config.get(:host, "127.0.0.1")
+        port = Config.get(:port, 6379)
+        password = Config.get(:password, "")
+        database = Config.get(:db, 0)
+        reconnect = Config.get(:reconnect, :no_reconnect)
+
+        {:ok, client} = Exredis.start_link(host, port, database, password, reconnect)
+        client
+      end
 
       Logger.debug "[Connector] connecting to redis server..."
-
-      {:ok, client} = Exredis.start_link(host, port, database, password, reconnect)
 
       client
     end
