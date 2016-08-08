@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>RedisPoolex – redis_poolex v0.0.5</title>
+    <title>RedisPoolex – redis_poolex v0.0.6</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="generator" content="ExDoc v0.11.0">
     <link rel="stylesheet" href="dist/app-6bc9434c82.css" />
@@ -28,7 +28,7 @@
         redis_poolex
       </h1>
       <h2 class="sidebar-projectVersion">
-        v0.0.5
+        v0.0.6
       </h2>
     </div>
     
@@ -60,7 +60,7 @@
 
 
       <h1>
-        <small class="visible-xs">redis_poolex v0.0.5</small>
+        <small class="visible-xs">redis_poolex v0.0.6</small>
         RedisPoolex
         
         
@@ -69,6 +69,12 @@
       
         <section id="moduledoc" class="docstring">
           <p>Application for running connection pool and redis connection inside.</p>
+<h2>Example:</h2>
+<pre><code class="elixir">alias RedisPoolex, as: Redis
+
+  Redis.query([&quot;SET&quot;, &quot;key1&quot;, &quot;value1&quot;]) =&gt; &quot;OK&quot;
+  Redis.query([&quot;GET&quot;, &quot;key1&quot;]) =&gt; &quot;value1&quot;
+  Redis.query([&quot;GET&quot;, &quot;key2&quot;]) =&gt; :undefined</code></pre>
 
         </section>
       
@@ -93,11 +99,17 @@
     <a href="#query/1">query(args)</a>
   </div>
   
+    <div class="summary-synopsis"><p><code class="inline">query</code> sends commands directly to Redis</p>
+</div>
+  
 </div>
 <div class="summary-row">
   <div class="summary-signature">
     <a href="#query_pipe/1">query_pipe(args)</a>
   </div>
+  
+    <div class="summary-synopsis"><p><code class="inline">query_pipe</code> sends multiple commands as batch directly to Redis</p>
+</div>
   
 </div>
 <div class="summary-row">
@@ -105,7 +117,7 @@
     <a href="#start/2">start(type, args)</a>
   </div>
   
-    <div class="summary-synopsis"><p>Callback implementation for <code class="inline">c::application.start/2</code></p>
+    <div class="summary-synopsis"><p>Callback implementation for <code class="inline">c:Application.start/2</code></p>
 </div>
   
 </div>
@@ -140,7 +152,8 @@
   </div>
   
   <section class="docstring">
-    
+    <p><code class="inline">query</code> sends commands directly to Redis</p>
+
   </section>
 </div>
 <div class="detail" id="query_pipe/1">
@@ -153,7 +166,8 @@
   </div>
   
   <section class="docstring">
-    
+    <p><code class="inline">query_pipe</code> sends multiple commands as batch directly to Redis.</p>
+
   </section>
 </div>
 <div class="detail" id="start/2">
@@ -166,7 +180,7 @@
   </div>
   
   <section class="docstring">
-    <p>Callback implementation for <code class="inline">c::application.start/2</code>.</p>
+    <p>Callback implementation for <code class="inline">c:Application.start/2</code>.</p>
 
   </section>
 </div>
