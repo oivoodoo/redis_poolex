@@ -3,7 +3,7 @@ defmodule RedisPoolex.Mixfile do
 
   def project do
     [app: :redis_poolex,
-     version: "0.0.5",
+     version: "0.0.6",
      elixir: "~> 1.2",
      description: description,
      package: package,
