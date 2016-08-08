@@ -6,9 +6,9 @@ Redis connection pool using poolboy and exredis libraries.
 
     alias RedisPoolex, as: Redis
 
-    Redis.set("key1", "value1") => "OK"
-    Redis.get("key1") => "value1"
-    Redis.get("key2") => :undefined
+    Redis.query(["SET", "key1", "value1"]) => "OK"
+    Redis.query(["GET", "key1"]) => "value1"
+    Redis.query(["GET", "key2"]) => :undefined
 
 ## Installation
 
@@ -17,7 +17,7 @@ If [available in Hex](https://hex.pm/packages/redis_poolex), the package can be 
   1. Add redis_poolex to your list of dependencies in `mix.exs`:
 
         def deps do
-          [{:redis_poolex, "~> 0.0.2"}]
+          [{:redis_poolex, "~> 0.0.5"}]
         end
 
   2. Ensure redis_poolex is started before your application:

@@ -1,5 +1,5 @@
-%{"earmark": {:hex, :earmark, "0.1.19"},
-  "eredis": {:hex, :eredis, "1.0.8"},
-  "ex_doc": {:hex, :ex_doc, "0.11.0"},
-  "exredis": {:hex, :exredis, "0.2.2"},
-  "poolboy": {:hex, :poolboy, "1.5.1"}}
+%{"earmark": {:hex, :earmark, "0.1.19", "ffec54f520a11b711532c23d8a52b75a74c09697062d10613fa2dbdf8a9db36e", [:mix], []},
+  "eredis": {:hex, :eredis, "1.0.8", "ab4fda1c4ba7fbe6c19c26c249dc13da916d762502c4b4fa2df401a8d51c5364", [:rebar], []},
+  "ex_doc": {:hex, :ex_doc, "0.11.0", "da23408bf4fb4dec1250cd4785c82f240d05d81ca1c121b075d513f57661452c", [:mix], [{:earmark, "~> 0.1.17 or ~> 0.2", [hex: :earmark, optional: true]}]},
+  "exredis": {:hex, :exredis, "0.2.2", "f72159ce0625f622d05025bd8747769375079da932ea7980ab74f204ddbf2b18", [:mix], [{:eredis, ">= 1.0.8", [hex: :eredis, optional: false]}]},
+  "poolboy": {:hex, :poolboy, "1.5.1", "6b46163901cfd0a1b43d692657ed9d7e599853b3b21b95ae5ae0a777cf9b6ca8", [:rebar], []}}

@@ -1,7 +1,18 @@
 defmodule RedisPoolex do
-  @moduledoc """
+  @moduledoc ~S"""
   Application for running connection pool and redis connection inside.
+
+  ## Example:
+
+    ```elixir
+    alias RedisPoolex, as: Redis
+
+    Redis.query(["SET", "key1", "value1"]) => "OK"
+    Redis.query(["GET", "key1"]) => "value1"
+    Redis.query(["GET", "key2"]) => :undefined
+    ```
   """
+
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
@@ -19,10 +30,16 @@ defmodule RedisPoolex do
     Supervisor.start_link(children, opts)
   end
 
+  @doc ~S"""
+  `query` sends commands directly to Redis
+  """
   def query(args) do
     RedisPoolex.Supervisor.q(args)
   end
 
+  @doc ~S"""
+  `query_pipe` sends multiple commands as batch directly to Redis.
+  """
   def query_pipe(args) do
     RedisPoolex.Supervisor.p(args)
   end
