@@ -25,3 +25,8 @@ If [available in Hex](https://hex.pm/packages/redis_poolex), the package can be 
         def application do
           [applications: [:redis_poolex]]
         end
+
+## Dev Env
+
+`make build` - setup containers
+`make test` - run test cases
