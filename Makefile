@@ -1,34 +1,11 @@
-NAME = redis_poolex
-NETWORK = redispoolex_back-tier
+.PHONY: build test console
 
 build:
-	docker-compose up -d
-	docker build -t $(NAME) .
-	docker run --rm -t -i \
-		--network=$(NETWORK) \
-		-v `pwd`:/app \
-		--dns 8.8.8.8 \
-		-w /app \
-		$(NAME) \
-		/bin/bash -c "mix deps.get"
-.PHONY: build
+	docker compose build
+	docker compose run --rm app mix deps.get
 
 test:
-	docker run --rm -t -i \
-		--network=$(NETWORK) \
-		-v `pwd`:/app \
-		--dns 8.8.8.8 \
-		-w /app \
-		$(NAME) \
-		/bin/bash -c "mix test"
-.PHONY: test
+	docker compose run --rm app mix test
 
 console:
-	docker run --rm -t -i \
-		--network=$(NETWORK) \
-		-v `pwd`:/app \
-		--dns 8.8.8.8 \
-		-w /app \
-		$(NAME) \
-		/bin/bash
-.PHONY: console
+	docker compose run --rm --entrypoint /bin/sh app
