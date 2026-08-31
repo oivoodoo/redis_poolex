@@ -1,60 +1,62 @@
-defmodule RedisPoolex.Mixfile do
+defmodule RedisPoolex.MixProject do
   use Mix.Project
 
+  @version "0.1.0"
+  @source_url "https://github.com/oivoodoo/redis_poolex"
+
   def project do
-    [app: :redis_poolex,
-     version: "0.0.6",
-     elixir: "~> 1.2",
-     description: description(),
-     package: package(),
-     build_embedded: Mix.env == :prod,
-     start_permanent: Mix.env == :prod,
-     deps: deps()]
+    [
+      app: :redis_poolex,
+      version: @version,
+      elixir: "~> 1.15",
+      start_permanent: Mix.env() == :prod,
+      deps: deps(),
+      description: description(),
+      package: package(),
+      docs: docs(),
+      source_url: @source_url,
+      homepage_url: @source_url,
+      name: "RedisPoolex"
+    ]
   end
 
-  # Configuration for the OTP application
-  #
-  # Type "mix help compile.app" for more information
   def application do
     [
-      applications: [:logger],
-      mod: {RedisPoolex, []}
+      extra_applications: [:logger],
+      mod: {RedisPoolex.Application, []}
     ]
   end
 
   defp description do
-    """
-    Redis connection pool using poolboy and exredis libraries
-    """
+    "Redis connection pool using poolboy and Redix"
   end
 
   defp package do
-    [# These are the default files included in the package
-      files: ["lib", "mix.exs", "README*"],
+    [
+      files: ~w(lib mix.exs README.md CHANGELOG.md LICENSE),
       maintainers: ["Alexandr Korsak"],
       licenses: ["MIT"],
       links: %{
-        "GitHub" => "https://github.com/oivoodoo/redis_poolex",
-        "Docs" => "http://hexdocs.pm/redis_poolex/"
+        "GitHub" => @source_url,
+        "Changelog" => "#{@source_url}/blob/master/CHANGELOG.md",
+        "Docs" => "https://hexdocs.pm/redis_poolex/"
       }
     ]
   end
 
-  # Dependencies can be Hex packages:
-  #
-  #   {:mydep, "~> 0.3.0"}
-  #
-  # Or git/path repositories:
-  #
-  #   {:mydep, git: "https://github.com/elixir-lang/mydep.git", tag: "0.1.0"}
-  #
-  # Type "mix help deps" for more examples and options
+  defp docs do
+    [
+      main: "readme",
+      extras: ["README.md", "CHANGELOG.md"],
+      source_ref: "v#{@version}"
+    ]
+  end
+
   defp deps do
     [
-      {:poolboy, ">= 1.5.1"},
-      {:exredis, ">= 0.2.2"},
-      {:earmark, "~> 0.1", only: :dev},
-      {:ex_doc, "~> 0.11", only: :dev}
+      {:poolboy, "~> 1.5"},
+      {:redix, "~> 1.5"},
+      {:ex_doc, "~> 0.38", only: :dev, runtime: false}
     ]
   end
 end

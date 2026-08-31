@@ -1,6 +1,12 @@
 /_build
 /cover
 /deps
+/doc
+/.fetch
 erl_crash.dump
 *.ez
-doc/
+*.beam
+/tmp
+/.elixir_ls
+/.elixir-tools
+.DS_Store

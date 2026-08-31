@@ -1,45 +1,53 @@
 defmodule RedisPoolex.Supervisor do
-  require Logger
-
   @moduledoc """
-  Redis connection pool supervisor to handle connections via pool and
-  reduce the number of opened connections via GenServer.
+  Supervisor for a poolboy pool of Redix connections.
   """
+
   use Supervisor
-
-  def start_link do
-    :supervisor.start_link(__MODULE__, [])
-  end
-
-  # TODO: add it as config options instead of compiled variables
-  @pool_name :redis_pool
 
   alias RedisPoolex.Config
 
-  def init([]) do
-    # Here are my pool options
+  @pool_name :redis_pool
+
+  def start_link(init_arg) do
+    Supervisor.start_link(__MODULE__, init_arg, name: __MODULE__)
+  end
+
+  @impl true
+  def init(_init_arg) do
     pool_options = [
       name: {:local, @pool_name},
-      worker_module: RedisPoolex.Worker,
+      worker_module: Redix,
       size: Config.get(:pool_size, 10),
       max_overflow: Config.get(:pool_max_overflow, 1)
     ]
 
     children = [
-      :poolboy.child_spec(@pool_name, pool_options, [])
+      :poolboy.child_spec(@pool_name, pool_options, Config.connection_args())
     ]
 
-    supervise(children, strategy: :one_for_one)
+    Supervisor.init(children, strategy: :one_for_one)
   end
 
-  @doc """
-  Making query via connection pool using `%{command: command, params: params}` pattern.
-  """
-  def q(args) do
-    :poolboy.transaction(@pool_name, fn(worker) -> GenServer.call(worker, %{command: :query, params: args}) end, Config.get(:timeout, 5000))
+  @spec query(Redix.command()) :: Redix.Protocol.redis_value()
+  def query(args) do
+    timeout = Config.get(:timeout, 5_000)
+
+    :poolboy.transaction(
+      @pool_name,
+      fn conn -> Redix.command!(conn, args, timeout: timeout) end,
+      timeout
+    )
   end
 
-  def p(args) do
-    :poolboy.transaction(@pool_name, fn(worker) -> GenServer.call(worker, %{command: :query_pipe, params: args}) end, Config.get(:timeout, 5000))
+  @spec query_pipe([Redix.command()]) :: [Redix.Protocol.redis_value()]
+  def query_pipe(args) do
+    timeout = Config.get(:timeout, 5_000)
+
+    :poolboy.transaction(
+      @pool_name,
+      fn conn -> Redix.pipeline!(conn, args, timeout: timeout) end,
+      timeout
+    )
   end
 end
